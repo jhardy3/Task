@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="yuQ-xg-BDA">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Task List Table View Controller-->
@@ -12,6 +13,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <button key="tableFooterView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Br5-Ze-EY5">
+                            <rect key="frame" x="0.0" y="136" width="600" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" title="Button"/>
+                            <connections>
+                                <action selector="completionToggleButtonPushed:" destination="6Y1-BM-eZV" eventType="touchUpInside" id="Hlt-L0-Rbc"/>
+                            </connections>
+                        </button>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="taskCell" textLabel="4k6-et-xcx" detailTextLabel="yQy-T0-iN0" style="IBUITableViewCellStyleValue1" id="phZ-uu-C9K">
                                 <rect key="frame" x="0.0" y="92" width="600" height="44"/>
@@ -36,6 +45,9 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="cSd-i0-LMD" kind="show" identifier="toExistingTask" id="jbo-3W-Tgl"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -46,7 +58,7 @@
                     <navigationItem key="navigationItem" id="ZMS-vh-F7w">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="le7-Xa-wMq">
                             <connections>
-                                <segue destination="cSd-i0-LMD" kind="show" id="IE5-xc-4Xq"/>
+                                <segue destination="cSd-i0-LMD" kind="show" identifier="toAddTask" id="46i-o7-P84"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -59,27 +71,157 @@
         <scene sceneID="SKs-Zc-Ifn">
             <objects>
                 <tableViewController id="cSd-i0-LMD" customClass="TaskDetailTableViewController" customModule="Task" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="7ya-s7-bIv">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="7ya-s7-bIv">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="QPp-79-yip">
-                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QPp-79-yip" id="lRZ-Wf-M66">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
+                        <gestureRecognizers/>
+                        <button key="tableFooterView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Nhm-Az-ETG">
+                            <rect key="frame" x="0.0" y="555" width="600" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <gestureRecognizers/>
+                            <edgeInsets key="layoutMargins" top="8" left="8" bottom="0.0" right="8"/>
+                            <state key="normal" title="Save"/>
+                            <connections>
+                                <action selector="addButtonPressed:" destination="cSd-i0-LMD" eventType="touchUpInside" id="J8F-Qx-dgG"/>
+                                <outletCollection property="gestureRecognizers" destination="WVb-Vt-pOK" appends="YES" id="DDs-o8-J9K"/>
+                                <outletCollection property="gestureRecognizers" destination="WVb-Vt-pOK" appends="YES" id="Vv6-Zg-52g"/>
+                            </connections>
+                        </button>
+                        <sections>
+                            <tableViewSection headerTitle="Section-1" id="mSH-pe-JbJ">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="QPp-79-yip">
+                                        <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QPp-79-yip" id="lRZ-Wf-M66">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DzH-Tz-Dhj">
+                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                                    <gestureRecognizers/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <outletCollection property="gestureRecognizers" destination="WVb-Vt-pOK" appends="YES" id="c4B-hG-UzI"/>
+                                                    </connections>
+                                                </textField>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="DzH-Tz-Dhj" firstAttribute="top" secondItem="lRZ-Wf-M66" secondAttribute="top" id="Q7N-Rg-avp"/>
+                                                <constraint firstAttribute="trailing" secondItem="DzH-Tz-Dhj" secondAttribute="trailing" id="USD-Oz-648"/>
+                                                <constraint firstAttribute="bottom" secondItem="DzH-Tz-Dhj" secondAttribute="bottom" id="j8a-La-2Dw"/>
+                                                <constraint firstItem="DzH-Tz-Dhj" firstAttribute="leading" secondItem="lRZ-Wf-M66" secondAttribute="leading" id="kRD-k8-le8"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <gestureRecognizers/>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="WVb-Vt-pOK" appends="YES" id="G0G-Dk-gKD"/>
+                                            <outletCollection property="gestureRecognizers" destination="WVb-Vt-pOK" appends="YES" id="tkF-sm-6wc"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="Section-2" id="wgc-Bb-BXg">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="u6G-LX-e2F">
+                                        <rect key="frame" x="0.0" y="164" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="u6G-LX-e2F" id="4tO-CZ-AdF">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hVB-ui-9xn">
+                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="97" id="WxO-SW-F6i"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                    <variation key="default">
+                                                        <mask key="constraints">
+                                                            <exclude reference="WxO-SW-F6i"/>
+                                                        </mask>
+                                                    </variation>
+                                                </textField>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="hVB-ui-9xn" secondAttribute="trailing" id="Frd-GQ-k7G"/>
+                                                <constraint firstItem="hVB-ui-9xn" firstAttribute="top" secondItem="4tO-CZ-AdF" secondAttribute="top" id="Sx0-4B-1oK"/>
+                                                <constraint firstAttribute="bottom" secondItem="hVB-ui-9xn" secondAttribute="bottom" id="krI-cb-R9g"/>
+                                                <constraint firstItem="hVB-ui-9xn" firstAttribute="leading" secondItem="4tO-CZ-AdF" secondAttribute="leading" id="ozj-52-Hbk"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="Section-3" id="fhN-po-xxG">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="319" id="gZ9-HZ-c55">
+                                        <rect key="frame" x="0.0" y="236" width="600" height="319"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gZ9-HZ-c55" id="elG-oD-ZIk">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="319"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ize-ms-Ysl">
+                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="319"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                </textView>
+                                            </subviews>
+                                            <gestureRecognizers/>
+                                            <constraints>
+                                                <constraint firstItem="ize-ms-Ysl" firstAttribute="leading" secondItem="elG-oD-ZIk" secondAttribute="leadingMargin" constant="-8" id="63B-W6-sXA"/>
+                                                <constraint firstItem="ize-ms-Ysl" firstAttribute="centerX" secondItem="elG-oD-ZIk" secondAttribute="centerX" id="Rqm-77-Wq5"/>
+                                                <constraint firstItem="ize-ms-Ysl" firstAttribute="centerY" secondItem="elG-oD-ZIk" secondAttribute="centerY" id="X1T-mR-mWF"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="ize-ms-Ysl" secondAttribute="bottom" constant="-8" id="qXe-Vi-RTL"/>
+                                                <constraint firstItem="ize-ms-Ysl" firstAttribute="top" secondItem="elG-oD-ZIk" secondAttribute="topMargin" constant="-8" id="xKV-Eo-tU6"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="ize-ms-Ysl" secondAttribute="trailing" constant="-8" id="xUs-nl-Ij2"/>
+                                            </constraints>
+                                            <connections>
+                                                <outletCollection property="gestureRecognizers" destination="WVb-Vt-pOK" appends="YES" id="hqA-ra-3Bp"/>
+                                            </connections>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
                         <connections>
                             <outlet property="dataSource" destination="cSd-i0-LMD" id="a2Q-oI-3A1"/>
                             <outlet property="delegate" destination="cSd-i0-LMD" id="HgA-0y-H28"/>
+                            <outletCollection property="gestureRecognizers" destination="WVb-Vt-pOK" appends="YES" id="XwR-1K-m7M"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="datePicker" destination="A2x-Ph-my1" id="3Sa-iU-K7g"/>
+                        <outlet property="taskDateLabel" destination="hVB-ui-9xn" id="bho-de-xQA"/>
+                        <outlet property="taskName" destination="DzH-Tz-Dhj" id="U8j-br-GuL"/>
+                        <outlet property="taskNoteTextView" destination="ize-ms-Ysl" id="TFC-oC-wre"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gGc-ON-2GS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" id="A2x-Ph-my1">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="216"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                    <gestureRecognizers/>
+                    <date key="date" timeIntervalSinceReferenceDate="477017071.47739702">
+                        <!--2016-02-13 00:44:31 +0000-->
+                    </date>
+                    <connections>
+                        <action selector="datePickerFire:" destination="cSd-i0-LMD" eventType="valueChanged" id="Aj6-nt-jl1"/>
+                        <outletCollection property="gestureRecognizers" destination="WVb-Vt-pOK" appends="YES" id="faD-mO-YVO"/>
+                        <outletCollection property="gestureRecognizers" destination="WVb-Vt-pOK" appends="YES" id="vVy-2H-RPv"/>
+                    </connections>
+                </datePicker>
+                <tapGestureRecognizer id="WVb-Vt-pOK">
+                    <connections>
+                        <action selector="userTappedView:" destination="cSd-i0-LMD" id="vVi-2E-OmB"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2107" y="437"/>
         </scene>
@@ -102,4 +244,7 @@
             <point key="canvasLocation" x="555" y="437"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="46i-o7-P84"/>
+    </inferredMetricsTieBreakers>
 </document>

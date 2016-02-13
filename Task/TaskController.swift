@@ -21,7 +21,7 @@ class TaskController {
     
     // MARK: - Shared Properties
     
-    static let sharedProperty = TaskController(withMockTaskArray: true)
+    static let sharedProperty = TaskController()
     
     // MARK: - Computed Properties
     
@@ -41,37 +41,24 @@ class TaskController {
     // Builds an array of completed tasks
     var completedTasks: [Task] {
         get {
-            var completedBuilderArray = [Task]()
-            for task in tasks {
-                if task.isComplete == true {
-                    completedBuilderArray.append(task)
-                }
-            }
-            return completedBuilderArray
+            let filteredArray = tasks.filter {$0.isComplete == true}
+            return filteredArray
         }
     }
     
     // Builds an array of tasks yet to be completed
     var inCompleteTasks: [Task] {
         get {
-            var incompleteBuilderArray = [Task]()
-            for task in tasks {
-                if task.isComplete == false {
-                    incompleteBuilderArray.append(task)
-                }
-            }
-            return incompleteBuilderArray
+            let filteredArray = tasks.filter {$0.isComplete == false}
+            return filteredArray
         }
     }
     
     // MARK: - Initializers
     
-    init(withMockTaskArray: Bool) {
-        if withMockTaskArray {
-            self.tasks = mockTasks
-        } else {
-            loadFromPersistenStorage()
-        }
+    init() {
+        self.tasks = mockTasks
+        loadFromPersistenStorage()
         
     }
     

@@ -31,3 +31,7 @@
 +# Carthage/Checkouts
 +
 +Carthage/Build
+UserInterfaceState.xcuserstate
+.DS_Store
+Task.xcodeproj/project.xcworkspace/xcuserdata/JLH.xcuserdatad/UserInterfaceState.xcuserstate
+.gitignore

@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		68D78A261BD6C26500509A87 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D78A251BD6C26500509A87 /* AppDelegate.swift */; };
-		68D78A281BD6C26500509A87 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D78A271BD6C26500509A87 /* ViewController.swift */; };
 		68D78A2B1BD6C26500509A87 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 68D78A291BD6C26500509A87 /* Main.storyboard */; };
 		68D78A2D1BD6C26500509A87 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 68D78A2C1BD6C26500509A87 /* Assets.xcassets */; };
 		68D78A301BD6C26500509A87 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 68D78A2E1BD6C26500509A87 /* LaunchScreen.storyboard */; };
@@ -18,6 +17,7 @@
 		7444B0841C6D3661006D2532 /* TaskDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7444B0831C6D3661006D2532 /* TaskDetailTableViewController.swift */; };
 		7444B0861C6D368D006D2532 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7444B0851C6D368D006D2532 /* Task.swift */; };
 		7444B0881C6D3ED2006D2532 /* TaskController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7444B0871C6D3ED2006D2532 /* TaskController.swift */; };
+		7444B0B41C6EB262006D2532 /* DateHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7444B0B31C6EB262006D2532 /* DateHelpers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,7 +40,6 @@
 /* Begin PBXFileReference section */
 		68D78A221BD6C26500509A87 /* Task.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Task.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		68D78A251BD6C26500509A87 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		68D78A271BD6C26500509A87 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		68D78A2A1BD6C26500509A87 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		68D78A2C1BD6C26500509A87 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		68D78A2F1BD6C26500509A87 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -55,6 +54,7 @@
 		7444B0831C6D3661006D2532 /* TaskDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskDetailTableViewController.swift; sourceTree = "<group>"; };
 		7444B0851C6D368D006D2532 /* Task.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		7444B0871C6D3ED2006D2532 /* TaskController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskController.swift; sourceTree = "<group>"; };
+		7444B0B31C6EB262006D2532 /* DateHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateHelpers.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,14 +105,14 @@
 		68D78A241BD6C26500509A87 /* Task */ = {
 			isa = PBXGroup;
 			children = (
-				68D78A251BD6C26500509A87 /* AppDelegate.swift */,
-				68D78A271BD6C26500509A87 /* ViewController.swift */,
 				7444B0811C6D35AF006D2532 /* TaskListTableViewController.swift */,
-				68D78A291BD6C26500509A87 /* Main.storyboard */,
-				7444B0851C6D368D006D2532 /* Task.swift */,
-				7444B0871C6D3ED2006D2532 /* TaskController.swift */,
 				7444B0831C6D3661006D2532 /* TaskDetailTableViewController.swift */,
+				7444B0871C6D3ED2006D2532 /* TaskController.swift */,
+				7444B0851C6D368D006D2532 /* Task.swift */,
+				7444B0B31C6EB262006D2532 /* DateHelpers.swift */,
+				68D78A251BD6C26500509A87 /* AppDelegate.swift */,
 				68D78A2C1BD6C26500509A87 /* Assets.xcassets */,
+				68D78A291BD6C26500509A87 /* Main.storyboard */,
 				68D78A2E1BD6C26500509A87 /* LaunchScreen.storyboard */,
 				68D78A311BD6C26500509A87 /* Info.plist */,
 			);
@@ -268,8 +268,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				7444B0821C6D35AF006D2532 /* TaskListTableViewController.swift in Sources */,
-				68D78A281BD6C26500509A87 /* ViewController.swift in Sources */,
 				7444B0861C6D368D006D2532 /* Task.swift in Sources */,
+				7444B0B41C6EB262006D2532 /* DateHelpers.swift in Sources */,
 				68D78A261BD6C26500509A87 /* AppDelegate.swift in Sources */,
 				7444B0881C6D3ED2006D2532 /* TaskController.swift in Sources */,
 				7444B0841C6D3661006D2532 /* TaskDetailTableViewController.swift in Sources */,

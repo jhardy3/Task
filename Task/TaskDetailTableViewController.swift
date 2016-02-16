@@ -14,9 +14,12 @@ class TaskDetailTableViewController: UITableViewController {
     @IBOutlet weak var taskNoteTextView: UITextView!
     @IBOutlet weak var taskDateLabel: UITextField!
     @IBOutlet weak var datePicker: UIDatePicker!
-    var dueDate: String?
     
-  
+    
+    var dueDate: String?
+    var delegate: TaskListTableViewController?
+    
+    
     
     
     let section = ["name", "due", "Notes"]
@@ -24,10 +27,7 @@ class TaskDetailTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         taskDateLabel.inputView = datePicker
-        taskName.text = "taskName"
-        taskNoteTextView.text = "hahahah"
-        taskDateLabel.text = "noooo"
-
+        
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -56,6 +56,13 @@ class TaskDetailTableViewController: UITableViewController {
     // MARK: - Action Buttons
     
     @IBAction func addButtonPressed(sender: UIButton) {
+        if taskName.text?.isEmpty == false {
+            TaskController.sharedProperty.addTask(taskName.text!, notes: taskNoteTextView.text!, due: datePicker.date)
+            if let delegate = delegate {
+                delegate.tableView.reloadData()
+            }
+            navigationController?.popViewControllerAnimated(true)
+        }
         
     }
     
@@ -71,7 +78,7 @@ class TaskDetailTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
         case 0:
-            return "Name"
+            return "Title"
         case 1:
             return "Due"
         case 2:
@@ -81,9 +88,13 @@ class TaskDetailTableViewController: UITableViewController {
         }
     }
     
-//    func updateWith(task:Task) {
-//        taskName.text = "hi"
-//        
-//    }
-//    
+    func updateWith(task:Task) {
+        if let date = task.due {
+            taskDateLabel.text = date.stringValue()
+        }
+        
+        taskNoteTextView.text = task.notes
+        taskName.text = task.name
+    }
+    
 }

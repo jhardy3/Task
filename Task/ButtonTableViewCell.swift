@@ -37,12 +37,14 @@ class ButtonTableViewCell: UITableViewCell {
     
     func updateWith(task: Task) {
         taskNameLabel.text = task.name
-        updateButton(task.isComplete)
+        if let isComplete = task.isComplete as? Bool {
+            updateButton(isComplete)
+        }
         
     }
     
     func updateButton(isComplete: Bool) {
-        if !isComplete {
+        if isComplete {
             completionButton.setImage(UIImage(named: "complete"), forState: .Normal)
         } else {
             completionButton.setImage(UIImage(named: "incomplete"), forState: .Normal)

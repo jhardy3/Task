@@ -34,28 +34,18 @@ class TaskListTableViewController: UITableViewController {
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("taskCell", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier("taskCell", forIndexPath: indexPath) as! ButtonTableViewCell
         let task = TaskController.sharedProperty.tasks[indexPath.row]
 
-        var completionString = ""
-        if task.isComplete == true {
-            completionString = "Complete"
-        } else {
-            completionString = "Incomplete"
-        }
-        
-        cell.textLabel?.text = task.name
-        cell.detailTextLabel?.text = String(completionString)
+        cell.updateWith(task)
+        cell.delegate = self
 
         return cell
     }
     
     // MARK: - Button Actions
 
-    @IBAction func completionToggleButtonPushed(sender: UIButton) {
-        tableView.reloadData()
-        
-    }
+
 
     
     // Override to support conditional editing of the table view.
@@ -80,43 +70,30 @@ class TaskListTableViewController: UITableViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
        
         if segue.identifier == "toAddTask" {
-            
+            let taskDetailView = segue.destinationViewController as! TaskDetailTableViewController
+            taskDetailView.delegate = self
         } else {
             if let index = tableView.indexPathForSelectedRow?.row {
                 let taskDetailView = segue.destinationViewController as! TaskDetailTableViewController
+                _ = taskDetailView.view
+                
                 let task = TaskController.sharedProperty.tasks[index]
-                taskDetailView.taskName.text = task.name
+                taskDetailView.updateWith(task)
+            }
+        }
+    }
+}
+
+    extension TaskListTableViewController: ButtonTableViewCellDelegate {
+        func buttonCellButtonTapped(sender: ButtonTableViewCell) {
+            if let index = tableView.indexPathForCell(sender)?.row, let isComplete = TaskController.sharedProperty.tasks[index].isComplete as? Bool {
+                TaskController.sharedProperty.tasks[index].isComplete = !isComplete
+                TaskController.sharedProperty.saveToPersistence()
+                tableView.reloadData()
+                
             }
         }
     }
     
    
     
-
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
-}
